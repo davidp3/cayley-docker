@@ -16,9 +16,18 @@ docker volume create --name data_volume
 
 3. Run Cayley in Docker.
 
+Using Cayley trunk from June 13 2016:
+
+```sh
+docker run -v data_volume:/data -p 64321:64321 -d docker.io/davidp3/cayley:0.4.1-trunk
+```
+
+Using Cayley release 0.4.1 from Apr 2015:
+
 ```sh
 docker run -v data_volume:/data -p 64321:64321 -d docker.io/davidp3/cayley:0.4.1
 ```
+
 
 Then open `http://127.0.0.1:64210` from your browser to access the graph's web GUI.
 
