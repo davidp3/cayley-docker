@@ -15,7 +15,7 @@ RUN \
   mkdir -p /opt/cayley
 
 RUN \
-  wget https://github.com/google/cayley/releases/download/v0.4.1/cayley_0.4.1_linux_amd64.tar.gz \
+  wget https://raw.githubusercontent.com/davidp3/cayley-docker/master/cayley_0.4.1-trunk_linux_amd64.tar.gz \
      -O - | tar -xvz --strip=1 -C /opt/cayley
 
 RUN \

@@ -2,7 +2,7 @@ This repo is heavily influenced by the outdated code in [this repo](https://gith
 
 ## cayley-docker
 
-This is a Docker image for [Cayley](https://github.com/google/cayley), an open-source graph database.
+This is a Docker image for [Cayley](https://github.com/google/cayley), an open-source graph database.  This Docker image uses a non-release build of Cayley as the last release is about a year and 168 commits old.
 
 ## Usage
 
@@ -35,3 +35,19 @@ docker run --rm -v data_volume:/src -v $PWD:/dst ubuntu bash -c "tar zcvf /dst/b
 ```sh
 docker run --rm -v data_volume:/dst -v $PWD:/src ubuntu bash -c "cd /dst && tar zxvf /src/backup.tar.gz --strip 1"
 ```
+
+## The Cayley binary image
+
+Cayley-docker uses a Cayley image I built from trunk.  To rebuild it, run this locally:
+
+```sh
+docker build -t davidp3/cayley-build:0.4.1-trunk -f Dockerfile.build-cayley .
+```
+
+Launch the image in a container and pull the .tar.gz from it:
+
+```sh
+docker run --rm -v $PWD:/dst davidp3/cayley-build:0.4.1-trunk bash -c "cp /opt/cayley/* /dst/"
+```
+
+The binary is now in $PWD.

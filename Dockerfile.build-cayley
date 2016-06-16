@@ -1,0 +1,29 @@
+#
+# Dockerfile that builds Cayley trunk for Ubuntu amd64
+#
+# https://github.com/davidp3/cayley-docker
+#
+
+FROM ubuntu
+
+MAINTAINER David Parks davidp99@gmail.com
+
+RUN \
+  apt-get update && \
+  apt-get install -y golang git && \
+  mkdir -p cayley && cd cayley && \
+  export GOPATH=`pwd` && \
+  export PATH=$PATH:`pwd`/bin && \
+  mkdir -p bin pkg src/github.com/google && \
+  cd src/github.com/google && \
+  git clone https://github.com/google/cayley.git && \
+  cd cayley && \
+  go get github.com/tools/godep && \
+  godep restore && \
+  go build ./cmd/cayley && \
+  mkdir -p pkg /opt/cayley && \
+  cp -r cayley templates static docs pkg/ && \
+  tar -zcvf /opt/cayley/cayley_0.4.1-trunk_linux_amd64.tar.gz pkg/*
+
+# Set working directory
+WORKDIR /opt/cayley
