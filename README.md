@@ -13,7 +13,6 @@ This is a Docker image for [Cayley](https://github.com/google/cayley), an open-s
 ```sh
 docker volume create --name data_volume
 ```
-
 3. Run Cayley in Docker.
 
 Using Cayley trunk from June 13 2016:
@@ -21,27 +20,23 @@ Using Cayley trunk from June 13 2016:
 ```sh
 docker run -v data_volume:/data -p 64321:64321 -d docker.io/davidp3/cayley:0.4.1-trunk
 ```
-
 Using Cayley release 0.4.1 from Apr 2015:
 
 ```sh
 docker run -v data_volume:/data -p 64321:64321 -d docker.io/davidp3/cayley:0.4.1
 ```
-
-Get the IP address of the Docker Client.  This will be the IP address for Cayley:
+4. Get the IP address of the Docker Client.  This will be the IP address for Cayley:
 
 ```sh
 docker-machine ls | awk '{print $5}'
 ```
-
 The result will look something like this:
 
 ```sh
 URL
 tcp://192.168.99.100:2376
 ```
-
-Then open `http://192.168.99.100:64321` from your browser to access the graph's web GUI.
+5. Open `http://192.168.99.100:64321` from your browser to access the graph's web GUI.
 
 ## Backup/Restore the Bolt Database
 
@@ -50,7 +45,6 @@ Then open `http://192.168.99.100:64321` from your browser to access the graph's 
 ```sh
 docker run --rm -v data_volume:/src -v $PWD:/dst ubuntu bash -c "tar zcvf /dst/backup.tar.gz /src"
 ```
-
 2. To restore the backup to a new volume (also named data_volume by the `docker volume create` call):
 
 ```sh
@@ -64,11 +58,9 @@ Cayley-docker uses a Cayley image I built from trunk.  To rebuild it, run this l
 ```sh
 docker build -t davidp3/cayley-build:0.4.1-trunk -f Dockerfile.build-cayley .
 ```
-
 Launch the image in a container and pull the .tar.gz from it:
 
 ```sh
 docker run --rm -v $PWD:/dst davidp3/cayley-build:0.4.1-trunk bash -c "cp /opt/cayley/* /dst/"
 ```
-
 The binary is now in $PWD.
