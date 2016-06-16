@@ -28,8 +28,20 @@ Using Cayley release 0.4.1 from Apr 2015:
 docker run -v data_volume:/data -p 64321:64321 -d docker.io/davidp3/cayley:0.4.1
 ```
 
+Get the IP address of the Docker Client.  This will be the IP address for Cayley:
 
-Then open `http://127.0.0.1:64210` from your browser to access the graph's web GUI.
+```sh
+docker-machine ls | awk '{print $5}'
+```
+
+The result will look something like this:
+
+```sh
+URL
+tcp://192.168.99.100:2376
+```
+
+Then open `http://192.168.99.100:64321` from your browser to access the graph's web GUI.
 
 ## Backup/Restore the Bolt Database
 
