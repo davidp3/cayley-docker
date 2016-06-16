@@ -23,7 +23,8 @@ RUN \
   go build ./cmd/cayley && \
   mkdir -p pkg /opt/cayley && \
   cp -r cayley templates static docs pkg/ && \
-  tar -zcvf /opt/cayley/cayley_0.4.1-trunk_linux_amd64.tar.gz pkg/*
+  cd pkg && \
+  tar -zcvf /opt/cayley/cayley_0.4.1-trunk_linux_amd64.tar.gz .
 
 # Set working directory
 WORKDIR /opt/cayley

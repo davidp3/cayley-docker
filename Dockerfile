@@ -4,11 +4,9 @@
 # https://github.com/davidp3/cayley-docker
 #
 
-# Pull base image.
 FROM ubuntu
 MAINTAINER David Parks davidp99@gmail.com
 
-# Download Cayley binary.
 RUN \
   apt-get update && \
   apt-get install -y wget && \
