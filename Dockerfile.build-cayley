@@ -1,7 +1,7 @@
 #
-# Dockerfile that builds Cayley trunk for Ubuntu x64
-#
 # https://github.com/davidp3/cayley-docker
+#
+# Dockerfile that builds Cayley trunk for Ubuntu x64
 #
 
 FROM ubuntu
