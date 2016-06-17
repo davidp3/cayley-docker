@@ -31,6 +31,3 @@ WORKDIR /opt/cayley
 CMD echo $CAYLEY_CFG && cat $CAYLEY_CFG 1>&2 && \
     cayley init -config $CAYLEY_CFG -logtostderr=true && \
     cayley http -config $CAYLEY_CFG -logtostderr=true
-
-# Expose ports.
-EXPOSE 64321
