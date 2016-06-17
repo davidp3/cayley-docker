@@ -1,5 +1,5 @@
 #
-# Dockerfile that builds Cayley trunk for Ubuntu amd64
+# Dockerfile that builds Cayley trunk for Ubuntu x64
 #
 # https://github.com/davidp3/cayley-docker
 #
@@ -24,7 +24,7 @@ RUN \
   mkdir -p pkg /opt/cayley && \
   cp -r cayley templates static docs pkg/ && \
   cd pkg && \
-  tar -zcvf /opt/cayley/cayley_0.4.1-trunk_linux_amd64.tar.gz .
+  tar -zcvf /opt/cayley/cayley_0.4.1-trunk_linux_x64.tar.gz .
 
 # Set working directory
 WORKDIR /opt/cayley
