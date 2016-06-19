@@ -14,7 +14,13 @@ RUN \
   mkdir -p cayley && cd cayley && \
   export GOPATH=`pwd` && \
   export PATH=$PATH:`pwd`/bin && \
-  mkdir -p bin pkg src/github.com/google && \
+  mkdir -p bin pkg src/github.com/google
+
+# To re-fetch latest from the github repo (instead of using cache), add
+# `--build-arg='CACHE_DATE=$(date)'` to your `docker build` command.
+ARG CACHE_DATE=2016-06-01
+
+RUN \
   cd src/github.com/google && \
   git clone https://github.com/google/cayley.git && \
   cd cayley && \
